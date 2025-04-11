@@ -14,20 +14,35 @@ class RequestHelper:
                     response = requests.get(api_url)
                     if response.status_code != 404:
                         valid_endpoints.append(api_url)
-        print(valid_endpoints)
         return valid_endpoints
 
     @staticmethod
     def check_methods(url):
         try:
-            r = requests.options(url)
-            allow = r.headers.get("Allow")
-            cors_allow = r.headers.get("Access-Control-Allow-Methods")
+            response = requests.options(url)
+            allow = response.headers.get("Allow")
+            cors_allow = response.headers.get("Access-Control-Allow-Methods")
             return {
                 "url": url,
-                "status": r.status_code,
+                "status": response.status_code,
                 "allow": allow,
                 "cors_allow": cors_allow,
+            }
+        except Exception as e:
+            return e
+
+    @staticmethod
+    def request_with_origin_header(url):
+        headers = {
+            "Origin": "https://evil.com"
+        }
+        try:
+            response = requests.get(url, headers=headers)
+            return {
+                "url": url,
+                "status": response.status_code,
+                "reflected_origin": response.headers.get("Access-Control-Allow-Origin"),
+                "allow_credentials": response.headers.get("Access-Control-Allow-Credentials"),
             }
         except Exception as e:
             return e
