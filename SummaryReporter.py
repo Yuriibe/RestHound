@@ -5,7 +5,22 @@ from rich.pretty import pprint
 class SummaryReporter:
 
     @staticmethod
+    def print_ascii_banner():
+
+        print(r"""
+          _____           _   _    _                       _ 
+         |  __ \         | | | |  | |                     | |
+         | |__) |___  ___| |_| |__| | ___  _   _ _ __   __| |
+         |  _  // _ \/ __| __|  __  |/ _ \| | | | '_ \ / _` |
+         | | \ \  __/\__ \ |_| |  | | (_) | |_| | | | | (_| |
+         |_|  \_\___||___/\__|_|  |_|\___/ \__,_|_| |_|\__,_|
+
+        """)
+
+
+    @staticmethod
     def print_summary(successful_endpoints, valid_endpoints_with_methods, origin_header_request, fingerprint):
+        SummaryReporter.print_ascii_banner()
         console = Console()
         print("\n" + "=" * 60)
         console.print("[bold green]✅ Reachable Endpoints")

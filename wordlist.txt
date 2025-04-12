@@ -1,7 +1,7 @@
+all
 get
 post
 put
-delete
 patch
-head
-options
+delete
+
