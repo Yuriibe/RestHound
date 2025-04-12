@@ -17,6 +17,9 @@
 
 ---
 
+![RestHound Demo](assets/restHound.gif)
+
+
 ## 📦 Requirements
 
 - Python 3.12+
