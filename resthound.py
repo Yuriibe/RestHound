@@ -6,7 +6,7 @@ from SummaryReporter import SummaryReporter
 valid_endpoints_with_methods = []
 successful_endpoints = []
 origin_header_request = []
-
+fingerprint = []
 parser = argparse.ArgumentParser(
     prog='restHound',
     description='REST API Scanner',
@@ -23,7 +23,9 @@ if args.url and args.wordlist:
         for endpoints in successful_endpoints:
             valid_endpoints_with_methods.append(RequestHelper.check_methods(endpoints))
             origin_header_request.append(RequestHelper.request_with_origin_header(endpoints))
-        SummaryReporter.print_summary(successful_endpoints, valid_endpoints_with_methods, origin_header_request)
+            fingerprint.append(RequestHelper.header_fingerprint(endpoints))
+        SummaryReporter.print_summary(successful_endpoints, valid_endpoints_with_methods, origin_header_request,
+                                      fingerprint)
     else:
         print("please provide valid target")
 else:

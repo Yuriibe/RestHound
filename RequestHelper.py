@@ -46,3 +46,13 @@ class RequestHelper:
             }
         except Exception as e:
             return e
+
+    @staticmethod
+    def header_fingerprint(url):
+        response = requests.options(url)
+        print(response)
+        return {
+            "url": url,
+            "server": response.headers.get("Server"),
+            "x_powered_by": response.headers.get("X-Powered-By"),
+        }
