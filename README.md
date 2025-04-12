@@ -19,7 +19,7 @@
 
 ## 📦 Requirements
 
-- Python 3.9+
+- Python 3.12+
 - `requests` library
 
 Install requirements:
