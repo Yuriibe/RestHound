@@ -1,7 +1,7 @@
 import argparse
-from RequestHelper import RequestHelper
-from ValidationHelper import ValidationHelper
-from SummaryReporter import SummaryReporter
+from core.RequestHelper import RequestHelper
+from core.ValidationHelper import ValidationHelper
+from core.SummaryReporter import SummaryReporter
 from rich.console import Console
 
 valid_endpoints_with_methods = []
@@ -25,10 +25,10 @@ console = Console(record=True)
 if args.url and args.wordlist:
     if ValidationHelper.is_valid_url(args.url) or ValidationHelper.is_valid_ip(args.url):
         successful_endpoints = RequestHelper.request_wordlist_endpoints(args.wordlist, args.url)
-        for endpoints in successful_endpoints:
-            valid_endpoints_with_methods.append(RequestHelper.check_methods(endpoints))
-            origin_header_request.append(RequestHelper.request_with_origin_header(endpoints))
-            fingerprint.append(RequestHelper.header_fingerprint(endpoints))
+        for endpoint in successful_endpoints:
+            valid_endpoints_with_methods.append(RequestHelper.check_methods(endpoint))
+            origin_header_request.append(RequestHelper.request_with_origin_header(endpoint))
+            fingerprint.append(RequestHelper.header_fingerprint(endpoint))
 
         SummaryReporter.print_summary(successful_endpoints, valid_endpoints_with_methods, origin_header_request,
                                       fingerprint, console)
