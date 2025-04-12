@@ -1,21 +1,17 @@
-from rich.console import Console
-from rich.pretty import pprint
-
-
 class SummaryReporter:
 
     @staticmethod
-    def print_ascii_banner():
-
-        print(r"""
-          _____           _   _    _                       _ 
-         |  __ \         | | | |  | |                     | |
-         | |__) |___  ___| |_| |__| | ___  _   _ _ __   __| |
-         |  _  // _ \/ __| __|  __  |/ _ \| | | | '_ \ / _` |
-         | | \ \  __/\__ \ |_| |  | | (_) | |_| | | | | (_| |
-         |_|  \_\___||___/\__|_|  |_|\___/ \__,_|_| |_|\__,_|
-
-        """)
+    def print_ascii_banner(console):
+        console.print(r"""
+    [bold cyan]
+      _____           _   _    _                       _ 
+     |  __ \         | | | |  | |                     | |
+     | |__) |___  ___| |_| |__| | ___  _   _ _ __   __| |
+     |  _  // _ \/ __| __|  __  |/ _ \| | | | '_ \ / _` |
+     | | \ \  __/\__ \ |_| |  | | (_) | |_| | | | | (_| |
+     |_|  \_\___||___/\__|_|  |_|\___/ \__,_|_| |_|\__,_|
+    [/]
+    """)
 
     @staticmethod
     def show_reachable_endpoints(endpoints, console):
@@ -68,9 +64,8 @@ class SummaryReporter:
                     console.print(f"    ↳ {label}: {value}")
 
     @staticmethod
-    def print_summary(successful_endpoints, valid_endpoints_with_methods, origin_header_request, fingerprint):
-        SummaryReporter.print_ascii_banner()
-        console = Console()
+    def print_summary(successful_endpoints, valid_endpoints_with_methods, origin_header_request, fingerprint, console):
+        SummaryReporter.print_ascii_banner(console)
         SummaryReporter.show_reachable_endpoints(successful_endpoints, console)
         SummaryReporter.show_methods(valid_endpoints_with_methods, console)
         SummaryReporter.show_cors_checks(origin_header_request, console)
