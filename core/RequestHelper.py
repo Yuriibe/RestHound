@@ -4,7 +4,7 @@ import requests
 class RequestHelper:
 
     @staticmethod
-    def request_wordlist_endpoints(wordlist, url) -> list:
+    def request_wordlist_endpoints(wordlist, url, verbose, console) -> list:
         valid_endpoints = []
         with open(wordlist, "r") as file:
             for line in file:
@@ -12,8 +12,9 @@ class RequestHelper:
                 if entry:
                     api_url = url + "/" + entry
                     response = requests.get(api_url)
+                    if verbose:
+                        console.print(f"[green][✓] {api_url} → {response.status_code} [/]")
                     if response.status_code != 404:
-                        print(api_url)
                         valid_endpoints.append(api_url)
         return valid_endpoints
 
@@ -51,7 +52,6 @@ class RequestHelper:
     @staticmethod
     def header_fingerprint(url):
         response = requests.options(url)
-        print("options:" + str(response.headers))
         return {
             "url": url,
             "server": response.headers.get("Server", None),  # Web server (nginx, Apache, etc.)

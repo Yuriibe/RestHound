@@ -17,15 +17,17 @@ parser = argparse.ArgumentParser(
 parser.add_argument('-u', '--url', help="Target base URL or IP")
 parser.add_argument('-w', '--wordlist', help="Wordlist with API routes")
 parser.add_argument('-o', '--output', help="Save report to file")
-parser.add_argument('-v', '--verbose')
+parser.add_argument('-v', '--verbose', action='store_true', help='Enable verbose output')
 
 args = parser.parse_args()
 console = Console(record=True)
 
 if args.url and args.wordlist:
     if ValidationHelper.is_valid_url(args.url) or ValidationHelper.is_valid_ip(args.url):
-        successful_endpoints = RequestHelper.request_wordlist_endpoints(args.wordlist, args.url)
+        successful_endpoints = RequestHelper.request_wordlist_endpoints(args.wordlist, args.url, args.verbose, console)
         for endpoint in successful_endpoints:
+            if args.verbose:
+                console.print(f"[cyan][→] Checking:[/] {endpoint}")
             valid_endpoints_with_methods.append(RequestHelper.check_methods(endpoint))
             origin_header_request.append(RequestHelper.request_with_origin_header(endpoint))
             fingerprint.append(RequestHelper.header_fingerprint(endpoint))
