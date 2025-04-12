@@ -1,7 +1,7 @@
 
 # 🐾 RestHound — REST API Enumerator & CORS Analyzer
 
-[![Python](https://img.shields.io/badge/Python-3.9+-blue?logo=python&logoColor=white)](https://www.python.org/)
+[![Python](https://img.shields.io/badge/Python-3.12+-blue?logo=python&logoColor=white)](https://www.python.org/)
 
 **RestHound** is a CLI tool for API reconnaissance and security analysis. It discovers RESTful API endpoints, checks HTTP method support, detects CORS misconfigurations, and fingerprints technologies using passive header inspection.
 
