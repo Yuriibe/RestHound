@@ -34,10 +34,18 @@ class SummaryReporter:
         print("\n" + "=" * 60)
         print("🧬 Header Fingerprint Summary")
         print("=" * 60)
+
+        header_fields = [
+            ("Server", "server"),
+            ("X-Powered-By", "x_powered_by"),
+            ("X-Generator", "x_generator"),
+            ("X-Runtime", "x_runtime"),
+            ("Via", "via"),
+        ]
+
         for cors in fingerprint:
-            url = cors.get("url")
-            server = cors.get("server", "Unknown")
-            powered = cors.get("x_powered_by", "Unknown")
-            print(f"  {url}")
-            print(f"    ↳ Server: {server}")
-            print(f"    ↳ X-Powered-By: {powered}")
+            print(f"  {cors.get('url')}")
+            for label, key in header_fields:
+                value = cors.get(key)
+                if value:
+                    print(f"    ↳ {label}: {value}")

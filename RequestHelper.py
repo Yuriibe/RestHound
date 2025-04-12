@@ -51,9 +51,12 @@ class RequestHelper:
     @staticmethod
     def header_fingerprint(url):
         response = requests.options(url)
-        print(response)
+        print("options:" + str(response.headers))
         return {
             "url": url,
-            "server": response.headers.get("Server"),
-            "x_powered_by": response.headers.get("X-Powered-By"),
+            "server": response.headers.get("Server", None),  # Web server (nginx, Apache, etc.)
+            "x_powered_by": response.headers.get("X-Powered-By", None),  # Framework (Express, PHP, etc.)
+            "x_generator": response.headers.get("X-Generator", None),  # CMS platforms (WordPress, Joomla)
+            "x_runtime": response.headers.get("X-Runtime", None),  # Rails, Flask, Laravel
+            "via": response.headers.get("Via", None),  # Proxy/CDN info
         }
