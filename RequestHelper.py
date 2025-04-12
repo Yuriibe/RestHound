@@ -13,6 +13,7 @@ class RequestHelper:
                     api_url = url + "/" + entry
                     response = requests.get(api_url)
                     if response.status_code != 404:
+                        print(api_url)
                         valid_endpoints.append(api_url)
         return valid_endpoints
 
