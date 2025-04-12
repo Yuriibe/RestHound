@@ -1,7 +1,7 @@
 class SummaryReporter:
 
     @staticmethod
-    def print_summary(successful_endpoints, valid_endpoints_with_methods, origin_header_request):
+    def print_summary(successful_endpoints, valid_endpoints_with_methods, origin_header_request, fingerprint):
         print("\n" + "=" * 60)
         print("✅ Reachable Endpoints:")
         print("=" * 60)
@@ -30,3 +30,22 @@ class SummaryReporter:
                 print(f"    ↳ Access-Control-Allow-Credentials: {creds}")
             else:
                 print(f"[✓] Safe: {url}")
+
+        print("\n" + "=" * 60)
+        print("🧬 Header Fingerprint Summary")
+        print("=" * 60)
+
+        header_fields = [
+            ("Server", "server"),
+            ("X-Powered-By", "x_powered_by"),
+            ("X-Generator", "x_generator"),
+            ("X-Runtime", "x_runtime"),
+            ("Via", "via"),
+        ]
+
+        for cors in fingerprint:
+            print(f"  {cors.get('url')}")
+            for label, key in header_fields:
+                value = cors.get(key)
+                if value:
+                    print(f"    ↳ {label}: {value}")
