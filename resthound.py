@@ -18,6 +18,7 @@ parser.add_argument('-u', '--url', help="Target base URL or IP")
 parser.add_argument('-w', '--wordlist', help="Wordlist with API routes")
 parser.add_argument('-o', '--output', help="Save report to file")
 parser.add_argument('-v', '--verbose', action='store_true', help='Enable verbose output')
+parser.add_argument('-t', '--thread', help='Amount of threads to be used')
 
 args = parser.parse_args()
 console = Console(record=True)
@@ -44,3 +45,4 @@ else:
         print("please provide wordlist")
     elif args.wordlist:
         print("please provide a target")
+    print('please provide valid arguments use -h for help')
