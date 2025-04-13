@@ -23,7 +23,6 @@
 ## 📦 Requirements
 
 - Python 3.12+
-- `requests` library
 
 Install requirements:
 
