@@ -79,6 +79,13 @@ python resthound.py -h
 
 ---
 
+## 🛠️ Planned Features
+
+These are features under consideration or in progress:
+
+- 🧾 Support for custom headers (e.g. tokens, User-Agent)
+- 🔄 JSON/CSV output formats
+
 ## 🛡️ Disclaimer
 
 This tool is intended for **authorized testing**, research, and educational use only. Do not scan or probe systems without explicit permission.
