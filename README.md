@@ -86,6 +86,7 @@ These are features under consideration or in progress:
 - 🧾 Support for custom headers (e.g. tokens, User-Agent)
 - 🔄 JSON/CSV output formats
 - 🕵️ Smart method inference when Allow header is missing
+- 🕵️ Validate that promised HTTP methods match actual behavior using HEAD or minimal requests.
 
 ## 🛡️ Disclaimer
 
