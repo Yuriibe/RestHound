@@ -4,19 +4,13 @@ import requests
 class RequestHelper:
 
     @staticmethod
-    def request_wordlist_endpoints(wordlist, url, verbose, console) -> list:
-        valid_endpoints = []
-        with open(wordlist, "r") as file:
-            for line in file:
-                entry = line.strip()
-                if entry:
-                    api_url = url + "/" + entry
-                    response = requests.get(api_url)
-                    if verbose:
-                        console.print(f"[green][✓] {api_url} → {response.status_code} [/]")
-                    if response.status_code != 404:
-                        valid_endpoints.append(api_url)
-        return valid_endpoints
+    def request_endpoint_from_wordlist(endpoint, url, verbose, console) -> str:
+        api_url = url + "/" + endpoint
+        response = requests.get(api_url)
+        if verbose:
+            console.print(f"[green][✓] {api_url} → {response.status_code} [/]")
+        if response.status_code != 404:
+            return api_url
 
     @staticmethod
     def check_methods(url):
