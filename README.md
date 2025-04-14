@@ -37,6 +37,11 @@ pip install -r requirements.txt
 ```bash
 python resthound.py -u https://httpbin.org -w wordlist.txt
 ```
+To see all available options, use:
+
+```bash
+python resthound.py -h
+```
 
 ---
 
